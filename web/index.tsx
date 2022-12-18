@@ -1,13 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import HomePage from "./shared/pages/HomePage";
+import StartModal from "./shared/pages/StartModal";
 
 const App = () => {
-	return <HomePage />;
+	return <StartModal />;
 };
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement
 );
 root.render(<App />);
-a;

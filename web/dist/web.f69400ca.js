@@ -53649,9 +53649,62 @@ var _useColorScheme = _interopRequireDefault(require("./exports/useColorScheme")
 var _useLocaleContext = _interopRequireDefault(require("./exports/useLocaleContext"));
 var _useWindowDimensions = _interopRequireDefault(require("./exports/useWindowDimensions"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./exports/createElement":"node_modules/react-native-web/dist/exports/createElement/index.js","./exports/findNodeHandle":"node_modules/react-native-web/dist/exports/findNodeHandle/index.js","./exports/processColor":"node_modules/react-native-web/dist/exports/processColor/index.js","./exports/render":"node_modules/react-native-web/dist/exports/render/index.js","./exports/unmountComponentAtNode":"node_modules/react-native-web/dist/exports/unmountComponentAtNode/index.js","./exports/NativeModules":"node_modules/react-native-web/dist/exports/NativeModules/index.js","./exports/AccessibilityInfo":"node_modules/react-native-web/dist/exports/AccessibilityInfo/index.js","./exports/Alert":"node_modules/react-native-web/dist/exports/Alert/index.js","./exports/Animated":"node_modules/react-native-web/dist/exports/Animated/index.js","./exports/Appearance":"node_modules/react-native-web/dist/exports/Appearance/index.js","./exports/AppRegistry":"node_modules/react-native-web/dist/exports/AppRegistry/index.js","./exports/AppState":"node_modules/react-native-web/dist/exports/AppState/index.js","./exports/BackHandler":"node_modules/react-native-web/dist/exports/BackHandler/index.js","./exports/Clipboard":"node_modules/react-native-web/dist/exports/Clipboard/index.js","./exports/DeviceInfo":"node_modules/react-native-web/dist/exports/DeviceInfo/index.js","./exports/Dimensions":"node_modules/react-native-web/dist/exports/Dimensions/index.js","./exports/Easing":"node_modules/react-native-web/dist/exports/Easing/index.js","./exports/I18nManager":"node_modules/react-native-web/dist/exports/I18nManager/index.js","./exports/Keyboard":"node_modules/react-native-web/dist/exports/Keyboard/index.js","./exports/InteractionManager":"node_modules/react-native-web/dist/exports/InteractionManager/index.js","./exports/LayoutAnimation":"node_modules/react-native-web/dist/exports/LayoutAnimation/index.js","./exports/Linking":"node_modules/react-native-web/dist/exports/Linking/index.js","./exports/NativeEventEmitter":"node_modules/react-native-web/dist/exports/NativeEventEmitter/index.js","./exports/PanResponder":"node_modules/react-native-web/dist/exports/PanResponder/index.js","./exports/PixelRatio":"node_modules/react-native-web/dist/exports/PixelRatio/index.js","./exports/Platform":"node_modules/react-native-web/dist/exports/Platform/index.js","./exports/Share":"node_modules/react-native-web/dist/exports/Share/index.js","./exports/StyleSheet":"node_modules/react-native-web/dist/exports/StyleSheet/index.js","./exports/UIManager":"node_modules/react-native-web/dist/exports/UIManager/index.js","./exports/Vibration":"node_modules/react-native-web/dist/exports/Vibration/index.js","./exports/ActivityIndicator":"node_modules/react-native-web/dist/exports/ActivityIndicator/index.js","./exports/Button":"node_modules/react-native-web/dist/exports/Button/index.js","./exports/CheckBox":"node_modules/react-native-web/dist/exports/CheckBox/index.js","./exports/FlatList":"node_modules/react-native-web/dist/exports/FlatList/index.js","./exports/Image":"node_modules/react-native-web/dist/exports/Image/index.js","./exports/ImageBackground":"node_modules/react-native-web/dist/exports/ImageBackground/index.js","./exports/KeyboardAvoidingView":"node_modules/react-native-web/dist/exports/KeyboardAvoidingView/index.js","./exports/Modal":"node_modules/react-native-web/dist/exports/Modal/index.js","./exports/Picker":"node_modules/react-native-web/dist/exports/Picker/index.js","./exports/Pressable":"node_modules/react-native-web/dist/exports/Pressable/index.js","./exports/ProgressBar":"node_modules/react-native-web/dist/exports/ProgressBar/index.js","./exports/RefreshControl":"node_modules/react-native-web/dist/exports/RefreshControl/index.js","./exports/SafeAreaView":"node_modules/react-native-web/dist/exports/SafeAreaView/index.js","./exports/ScrollView":"node_modules/react-native-web/dist/exports/ScrollView/index.js","./exports/SectionList":"node_modules/react-native-web/dist/exports/SectionList/index.js","./exports/StatusBar":"node_modules/react-native-web/dist/exports/StatusBar/index.js","./exports/Switch":"node_modules/react-native-web/dist/exports/Switch/index.js","./exports/Text":"node_modules/react-native-web/dist/exports/Text/index.js","./exports/TextInput":"node_modules/react-native-web/dist/exports/TextInput/index.js","./exports/Touchable":"node_modules/react-native-web/dist/exports/Touchable/index.js","./exports/TouchableHighlight":"node_modules/react-native-web/dist/exports/TouchableHighlight/index.js","./exports/TouchableNativeFeedback":"node_modules/react-native-web/dist/exports/TouchableNativeFeedback/index.js","./exports/TouchableOpacity":"node_modules/react-native-web/dist/exports/TouchableOpacity/index.js","./exports/TouchableWithoutFeedback":"node_modules/react-native-web/dist/exports/TouchableWithoutFeedback/index.js","./exports/View":"node_modules/react-native-web/dist/exports/View/index.js","./exports/VirtualizedList":"node_modules/react-native-web/dist/exports/VirtualizedList/index.js","./exports/YellowBox":"node_modules/react-native-web/dist/exports/YellowBox/index.js","./exports/LogBox":"node_modules/react-native-web/dist/exports/LogBox/index.js","./exports/DrawerLayoutAndroid":"node_modules/react-native-web/dist/exports/DrawerLayoutAndroid/index.js","./exports/InputAccessoryView":"node_modules/react-native-web/dist/exports/InputAccessoryView/index.js","./exports/ToastAndroid":"node_modules/react-native-web/dist/exports/ToastAndroid/index.js","./exports/PermissionsAndroid":"node_modules/react-native-web/dist/exports/PermissionsAndroid/index.js","./exports/Settings":"node_modules/react-native-web/dist/exports/Settings/index.js","./exports/Systrace":"node_modules/react-native-web/dist/exports/Systrace/index.js","./exports/TVEventHandler":"node_modules/react-native-web/dist/exports/TVEventHandler/index.js","./exports/DeviceEventEmitter":"node_modules/react-native-web/dist/exports/DeviceEventEmitter/index.js","./exports/useColorScheme":"node_modules/react-native-web/dist/exports/useColorScheme/index.js","./exports/useLocaleContext":"node_modules/react-native-web/dist/exports/useLocaleContext/index.js","./exports/useWindowDimensions":"node_modules/react-native-web/dist/exports/useWindowDimensions/index.js"}],"shared/pages/HomePage.tsx":[function(require,module,exports) {
+},{"./exports/createElement":"node_modules/react-native-web/dist/exports/createElement/index.js","./exports/findNodeHandle":"node_modules/react-native-web/dist/exports/findNodeHandle/index.js","./exports/processColor":"node_modules/react-native-web/dist/exports/processColor/index.js","./exports/render":"node_modules/react-native-web/dist/exports/render/index.js","./exports/unmountComponentAtNode":"node_modules/react-native-web/dist/exports/unmountComponentAtNode/index.js","./exports/NativeModules":"node_modules/react-native-web/dist/exports/NativeModules/index.js","./exports/AccessibilityInfo":"node_modules/react-native-web/dist/exports/AccessibilityInfo/index.js","./exports/Alert":"node_modules/react-native-web/dist/exports/Alert/index.js","./exports/Animated":"node_modules/react-native-web/dist/exports/Animated/index.js","./exports/Appearance":"node_modules/react-native-web/dist/exports/Appearance/index.js","./exports/AppRegistry":"node_modules/react-native-web/dist/exports/AppRegistry/index.js","./exports/AppState":"node_modules/react-native-web/dist/exports/AppState/index.js","./exports/BackHandler":"node_modules/react-native-web/dist/exports/BackHandler/index.js","./exports/Clipboard":"node_modules/react-native-web/dist/exports/Clipboard/index.js","./exports/DeviceInfo":"node_modules/react-native-web/dist/exports/DeviceInfo/index.js","./exports/Dimensions":"node_modules/react-native-web/dist/exports/Dimensions/index.js","./exports/Easing":"node_modules/react-native-web/dist/exports/Easing/index.js","./exports/I18nManager":"node_modules/react-native-web/dist/exports/I18nManager/index.js","./exports/Keyboard":"node_modules/react-native-web/dist/exports/Keyboard/index.js","./exports/InteractionManager":"node_modules/react-native-web/dist/exports/InteractionManager/index.js","./exports/LayoutAnimation":"node_modules/react-native-web/dist/exports/LayoutAnimation/index.js","./exports/Linking":"node_modules/react-native-web/dist/exports/Linking/index.js","./exports/NativeEventEmitter":"node_modules/react-native-web/dist/exports/NativeEventEmitter/index.js","./exports/PanResponder":"node_modules/react-native-web/dist/exports/PanResponder/index.js","./exports/PixelRatio":"node_modules/react-native-web/dist/exports/PixelRatio/index.js","./exports/Platform":"node_modules/react-native-web/dist/exports/Platform/index.js","./exports/Share":"node_modules/react-native-web/dist/exports/Share/index.js","./exports/StyleSheet":"node_modules/react-native-web/dist/exports/StyleSheet/index.js","./exports/UIManager":"node_modules/react-native-web/dist/exports/UIManager/index.js","./exports/Vibration":"node_modules/react-native-web/dist/exports/Vibration/index.js","./exports/ActivityIndicator":"node_modules/react-native-web/dist/exports/ActivityIndicator/index.js","./exports/Button":"node_modules/react-native-web/dist/exports/Button/index.js","./exports/CheckBox":"node_modules/react-native-web/dist/exports/CheckBox/index.js","./exports/FlatList":"node_modules/react-native-web/dist/exports/FlatList/index.js","./exports/Image":"node_modules/react-native-web/dist/exports/Image/index.js","./exports/ImageBackground":"node_modules/react-native-web/dist/exports/ImageBackground/index.js","./exports/KeyboardAvoidingView":"node_modules/react-native-web/dist/exports/KeyboardAvoidingView/index.js","./exports/Modal":"node_modules/react-native-web/dist/exports/Modal/index.js","./exports/Picker":"node_modules/react-native-web/dist/exports/Picker/index.js","./exports/Pressable":"node_modules/react-native-web/dist/exports/Pressable/index.js","./exports/ProgressBar":"node_modules/react-native-web/dist/exports/ProgressBar/index.js","./exports/RefreshControl":"node_modules/react-native-web/dist/exports/RefreshControl/index.js","./exports/SafeAreaView":"node_modules/react-native-web/dist/exports/SafeAreaView/index.js","./exports/ScrollView":"node_modules/react-native-web/dist/exports/ScrollView/index.js","./exports/SectionList":"node_modules/react-native-web/dist/exports/SectionList/index.js","./exports/StatusBar":"node_modules/react-native-web/dist/exports/StatusBar/index.js","./exports/Switch":"node_modules/react-native-web/dist/exports/Switch/index.js","./exports/Text":"node_modules/react-native-web/dist/exports/Text/index.js","./exports/TextInput":"node_modules/react-native-web/dist/exports/TextInput/index.js","./exports/Touchable":"node_modules/react-native-web/dist/exports/Touchable/index.js","./exports/TouchableHighlight":"node_modules/react-native-web/dist/exports/TouchableHighlight/index.js","./exports/TouchableNativeFeedback":"node_modules/react-native-web/dist/exports/TouchableNativeFeedback/index.js","./exports/TouchableOpacity":"node_modules/react-native-web/dist/exports/TouchableOpacity/index.js","./exports/TouchableWithoutFeedback":"node_modules/react-native-web/dist/exports/TouchableWithoutFeedback/index.js","./exports/View":"node_modules/react-native-web/dist/exports/View/index.js","./exports/VirtualizedList":"node_modules/react-native-web/dist/exports/VirtualizedList/index.js","./exports/YellowBox":"node_modules/react-native-web/dist/exports/YellowBox/index.js","./exports/LogBox":"node_modules/react-native-web/dist/exports/LogBox/index.js","./exports/DrawerLayoutAndroid":"node_modules/react-native-web/dist/exports/DrawerLayoutAndroid/index.js","./exports/InputAccessoryView":"node_modules/react-native-web/dist/exports/InputAccessoryView/index.js","./exports/ToastAndroid":"node_modules/react-native-web/dist/exports/ToastAndroid/index.js","./exports/PermissionsAndroid":"node_modules/react-native-web/dist/exports/PermissionsAndroid/index.js","./exports/Settings":"node_modules/react-native-web/dist/exports/Settings/index.js","./exports/Systrace":"node_modules/react-native-web/dist/exports/Systrace/index.js","./exports/TVEventHandler":"node_modules/react-native-web/dist/exports/TVEventHandler/index.js","./exports/DeviceEventEmitter":"node_modules/react-native-web/dist/exports/DeviceEventEmitter/index.js","./exports/useColorScheme":"node_modules/react-native-web/dist/exports/useColorScheme/index.js","./exports/useLocaleContext":"node_modules/react-native-web/dist/exports/useLocaleContext/index.js","./exports/useWindowDimensions":"node_modules/react-native-web/dist/exports/useWindowDimensions/index.js"}],"shared/utils/Validation.ts":[function(require,module,exports) {
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isNumeric = void 0;
+var isNumeric = function isNumeric(value) {
+  return /^-?\d+$/.test(value);
+};
+exports.isNumeric = isNumeric;
+},{}],"shared/utils/Alert.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var react_native_1 = require("react-native");
+// https://github.com/necolas/react-native-web/issues/1026
+var webAlert = function webAlert(title, description, buttons) {
+  if (buttons === undefined || buttons.length === 0) {
+    window.alert([title, description].filter(Boolean).join("\n"));
+    return;
+  }
+  var result = window.confirm([title, description].filter(Boolean).join("\n"));
+  if (result) {
+    var _confirmOption$onPres;
+    var confirmOption = buttons.find(function (_ref) {
+      var style = _ref.style;
+      return style !== "cancel";
+    });
+    confirmOption === null || confirmOption === void 0 ? void 0 : (_confirmOption$onPres = confirmOption.onPress) === null || _confirmOption$onPres === void 0 ? void 0 : _confirmOption$onPres.call(confirmOption);
+  } else {
+    var _cancelOption$onPress;
+    var cancelOption = buttons.find(function (_ref2) {
+      var style = _ref2.style;
+      return style === "cancel";
+    });
+    cancelOption === null || cancelOption === void 0 ? void 0 : (_cancelOption$onPress = cancelOption.onPress) === null || _cancelOption$onPress === void 0 ? void 0 : _cancelOption$onPress.call(cancelOption);
+  }
+};
+var alert = react_native_1.Platform.OS === "web" ? webAlert : react_native_1.Alert.alert;
+exports.default = alert;
+},{"react-native":"node_modules/react-native-web/dist/index.js"}],"shared/pages/StartModal.tsx":[function(require,module,exports) {
+"use strict";
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -53691,12 +53744,19 @@ var __importStar = this && this.__importStar || function (mod) {
   __setModuleDefault(result, mod);
   return result;
 };
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var react_1 = __importStar(require("react"));
 var react_native_1 = require("react-native");
-var StartPage = function StartPage() {
+var Validation_1 = require("../utils/Validation");
+var Alert_1 = __importDefault(require("../utils/Alert"));
+var StartModal = function StartModal() {
   var _ref = (0, react_1.useState)([]),
     _ref2 = _slicedToArray(_ref, 2),
     players = _ref2[0],
@@ -53705,60 +53765,150 @@ var StartPage = function StartPage() {
     _ref4 = _slicedToArray(_ref3, 2),
     moneyTotal = _ref4[0],
     setMoneyTotal = _ref4[1];
-  var _ref5 = (0, react_1.useState)(false),
+  var _ref5 = (0, react_1.useState)(true),
     _ref6 = _slicedToArray(_ref5, 2),
     modalVisible = _ref6[0],
     setModalVisible = _ref6[1];
-  return react_1.default.createElement(react_1.default.Fragment, null, react_1.default.createElement(react_native_1.View, {
-    style: {
-      flex: 0,
-      alignItems: "center",
-      justifyContent: "center",
-      flexDirection: "column"
+  var _ref7 = (0, react_1.useState)(""),
+    _ref8 = _slicedToArray(_ref7, 2),
+    playerName = _ref8[0],
+    setPlayerName = _ref8[1];
+  var startGameOnPress = function startGameOnPress() {
+    if (players.length < 2) {
+      (0, Alert_1.default)("You cannot start a game with less than 2 players!");
+      return;
     }
-  }, react_1.default.createElement(react_native_1.View, null, react_1.default.createElement(react_native_1.Modal, {
-    visible: modalVisible,
-    transparent: false,
-    onRequestClose: function onRequestClose() {
-      return setModalVisible(false);
-    },
-    style: {
-      backgroundColor: "red"
+    if (parseInt(moneyTotal) < 1) {
+      (0, Alert_1.default)("You cannot start a game with less than 1 dollar to be won!");
+      return;
     }
-  }, react_1.default.createElement(react_native_1.Text, null, "I am a modal"), react_1.default.createElement(react_native_1.Button, {
-    title: "close the modal",
-    onPress: function onPress() {
-      return setModalVisible(false);
-    }
-  }))), react_1.default.createElement(react_native_1.View, null, players.map(function (player) {
-    return react_1.default.createElement(react_native_1.Text, null, player.name);
-  })), react_1.default.createElement(react_native_1.TextInput, {
-    onChangeText: function onChangeText(amount) {
-      return setMoneyTotal(amount);
-    },
-    value: moneyTotal,
-    placeholder: "input an amount of money to win!",
-    keyboardType: "numeric"
-  }), react_1.default.createElement(react_native_1.View, null, react_1.default.createElement(react_native_1.Button, {
-    title: "Start Game button",
-    onPress: function onPress() {
-      return console.log("you started a game");
-    }
-  }), react_1.default.createElement(react_native_1.Button, {
-    title: "Add new player",
+    setModalVisible(false);
+  };
+  return react_1.default.createElement(react_1.default.Fragment, null, react_1.default.createElement(react_native_1.Button, {
+    title: "make modal visible",
     onPress: function onPress() {
       return setModalVisible(function (prev) {
         return !prev;
       });
     }
-  }))));
+  }), react_1.default.createElement(react_native_1.Modal, {
+    visible: modalVisible,
+    animationType: "fade",
+    onRequestClose: function onRequestClose() {
+      return setModalVisible(false);
+    }
+  }, react_1.default.createElement(react_native_1.Button, {
+    title: "make modal visible",
+    onPress: function onPress() {
+      return (0, Alert_1.default)("test alert");
+    }
+  }), react_1.default.createElement(react_native_1.View, {
+    style: {
+      flex: 3,
+      alignItems: "center",
+      justifyContent: "space-evenly",
+      alignContent: "center",
+      borderColor: "black",
+      flexShrink: 1,
+      borderWidth: 2
+    }
+  }, react_1.default.createElement(react_native_1.View, null, react_1.default.createElement(PlayerList, _objectSpread({}, {
+    players: players,
+    setPlayers: setPlayers
+  })), react_1.default.createElement(react_native_1.Text, null, "Winning pot!"), react_1.default.createElement(react_native_1.TextInput, {
+    onChangeText: function onChangeText(amount) {
+      console.log((0, Validation_1.isNumeric)(amount) + " " + amount);
+      if (!(0, Validation_1.isNumeric)(amount)) {
+        (0, Alert_1.default)("only numbers allowed");
+      } else setMoneyTotal(amount);
+    },
+    value: moneyTotal,
+    placeholder: "input an amount of money to win!",
+    keyboardType: "numeric",
+    style: {
+      borderColor: "black",
+      borderWidth: 1
+    }
+  })), react_1.default.createElement(react_native_1.View, {
+    style: styles.buttons
+  }, react_1.default.createElement(react_native_1.Button, {
+    title: "Start Game button",
+    onPress: startGameOnPress
+  }), react_1.default.createElement(Gap, null), react_1.default.createElement(react_native_1.TextInput, {
+    onChangeText: function onChangeText(name) {
+      return setPlayerName(name);
+    },
+    value: playerName,
+    placeholder: "Input a player name",
+    style: {
+      borderColor: "black",
+      borderWidth: 1
+    }
+  }), react_1.default.createElement(react_native_1.Button, {
+    title: "Add new player",
+    onPress: function onPress() {
+      if (playerName) {
+        setPlayers(function (prev) {
+          return [].concat(_toConsumableArray(prev), [{
+            name: playerName,
+            amountWon: 0
+          }]);
+        });
+        setPlayerName("");
+      } else {
+        (0, Alert_1.default)("You must add a player name");
+      }
+    }
+  })))));
 };
-var playerList = function playerList() {};
+var Gap = function Gap() {
+  return react_1.default.createElement(react_native_1.View, {
+    style: styles.gap
+  });
+};
+var PlayerList = function PlayerList(_ref9) {
+  var players = _ref9.players,
+    setPlayers = _ref9.setPlayers;
+  return react_1.default.createElement(react_native_1.View, null, players.map(function (player, index) {
+    return react_1.default.createElement(react_native_1.View, null, react_1.default.createElement(react_native_1.Text, null, player.name, ": ", player.amountWon), react_1.default.createElement(react_native_1.Button, {
+      title: "X",
+      onPress: function onPress() {
+        return setPlayers(function (prev) {
+          return prev.filter(function (currPlayer, pos) {
+            return index !== pos;
+          });
+        });
+      }
+    }));
+  }));
+};
 var beginButtons = function beginButtons() {};
 var moneyInput = function moneyInput() {};
 var startPage = function startPage() {};
-exports.default = StartPage;
-},{"react":"node_modules/react/index.js","react-native":"node_modules/react-native-web/dist/index.js"}],"index.tsx":[function(require,module,exports) {
+var styles = react_native_1.StyleSheet.create({
+  gap: {
+    height: 10
+  },
+  playerList: {},
+  container: {},
+  buttons: {
+    justifyContent: "space-evenly"
+  },
+  containeralt: {
+    alignItems: "center",
+    backgroundColor: "white",
+    borderColor: "#eee",
+    borderRadius: 10,
+    borderWidth: 1,
+    justifyContent: "center",
+    height: 300,
+    margin: "auto",
+    padding: 30,
+    width: 300
+  }
+});
+exports.default = StartModal;
+},{"react":"node_modules/react/index.js","react-native":"node_modules/react-native-web/dist/index.js","../utils/Validation":"shared/utils/Validation.ts","../utils/Alert":"shared/utils/Alert.ts"}],"index.tsx":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -53771,14 +53921,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 var react_1 = __importDefault(require("react"));
 var client_1 = __importDefault(require("react-dom/client"));
-var HomePage_1 = __importDefault(require("./shared/pages/HomePage"));
+var StartModal_1 = __importDefault(require("./shared/pages/StartModal"));
 var App = function App() {
-  return react_1.default.createElement(HomePage_1.default, null);
+  return react_1.default.createElement(StartModal_1.default, null);
 };
 var root = client_1.default.createRoot(document.getElementById("root"));
 root.render(react_1.default.createElement(App, null));
-a;
-},{"react":"node_modules/react/index.js","react-dom/client":"node_modules/react-dom/client.js","./shared/pages/HomePage":"shared/pages/HomePage.tsx"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom/client":"node_modules/react-dom/client.js","./shared/pages/StartModal":"shared/pages/StartModal.tsx"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
