@@ -1,27 +1,20 @@
-import React, { useState } from "react";
-import {
-	View,
-	Text,
-	Button,
-	TextInput,
-	Modal,
-	StyleSheet,
-	Alert,
-	FlatList,
-	TouchableOpacity,
-} from "react-native";
+import React, { FC, ReactNode, useState } from "react";
+import { View, Text, Button, TextInput, Modal, StyleSheet } from "react-native";
 import { isNumeric } from "../utils/Validation";
 import alert from "../utils/Alert";
 
-type Player = {
+export type Player = {
 	name: string;
 	amountWon: number;
+	isActive?: boolean;
 };
 
-const StartModal = () => {
+const StartGameModal: FC<{ children?: ReactNode; visible: boolean }> = (
+	props
+) => {
 	const [players, setPlayers] = useState<Player[]>([]);
 	const [moneyTotal, setMoneyTotal] = useState("");
-	const [modalVisible, setModalVisible] = useState(true);
+	const [modalVisible, setModalVisible] = useState(props.visible);
 	const [playerName, setPlayerName] = useState("");
 
 	const startGameOnPress = () => {
@@ -39,19 +32,11 @@ const StartModal = () => {
 
 	return (
 		<>
-			<Button
-				title={"make modal visible"}
-				onPress={() => setModalVisible((prev) => !prev)}
-			/>
 			<Modal
-				visible={modalVisible}
+				visible={modalVisible} //modalVisible
 				animationType="fade"
 				onRequestClose={() => setModalVisible(false)}
 			>
-				<Button
-					title={"make modal visible"}
-					onPress={() => alert("test alert")}
-				/>
 				<View
 					style={{
 						flex: 3,
@@ -68,7 +53,6 @@ const StartModal = () => {
 						<Text>Winning pot!</Text>
 						<TextInput
 							onChangeText={(amount) => {
-								console.log(isNumeric(amount) + " " + amount);
 								if (!isNumeric(amount)) {
 									alert("only numbers allowed");
 								} else setMoneyTotal(amount);
@@ -102,6 +86,7 @@ const StartModal = () => {
 								}
 							}}
 						/>
+						{props.children}
 					</View>
 				</View>
 			</Modal>
@@ -113,28 +98,31 @@ const Gap = () => {
 	return <View style={styles.gap} />;
 };
 
-const PlayerList = ({
+export const PlayerList = ({
 	players,
 	setPlayers,
 }: {
 	players: Player[];
-	setPlayers: React.SetStateAction<Player[]>;
+	setPlayers?: React.Dispatch<React.SetStateAction<Player[]>>;
 }) => {
 	return (
 		<View>
-			{players.map((player: Player, index) => (
+			{players.map((player: Player) => (
 				<View>
 					<Text>
-						{player.name}: {player.amountWon}
+						{player.name}: {player.amountWon} {player.isActive && "****"}
 					</Text>
-					<Button
-						title="X"
-						onPress={() =>
-							setPlayers((prev) =>
-								prev.filter((currPlayer, pos) => index !== pos)
-							)
-						}
-					/>
+					{setPlayers && (
+						<Button
+							title="X"
+							onPress={() =>
+								setPlayers(
+									(prev) =>
+										prev.filter((currPlayer) => player.name !== currPlayer.name) //may need to check id instead
+								)
+							}
+						/>
+					)}
 				</View>
 			))}
 		</View>
@@ -163,4 +151,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default StartModal;
+export default StartGameModal;

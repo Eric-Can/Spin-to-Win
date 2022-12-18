@@ -53692,7 +53692,7 @@ var webAlert = function webAlert(title, description, buttons) {
 };
 var alert = react_native_1.Platform.OS === "web" ? webAlert : react_native_1.Alert.alert;
 exports.default = alert;
-},{"react-native":"node_modules/react-native-web/dist/index.js"}],"shared/pages/StartModal.tsx":[function(require,module,exports) {
+},{"react-native":"node_modules/react-native-web/dist/index.js"}],"shared/pages/StartGameModal.tsx":[function(require,module,exports) {
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -53752,11 +53752,12 @@ var __importDefault = this && this.__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.PlayerList = void 0;
 var react_1 = __importStar(require("react"));
 var react_native_1 = require("react-native");
 var Validation_1 = require("../utils/Validation");
 var Alert_1 = __importDefault(require("../utils/Alert"));
-var StartModal = function StartModal() {
+var StartGameModal = function StartGameModal(props) {
   var _ref = (0, react_1.useState)([]),
     _ref2 = _slicedToArray(_ref, 2),
     players = _ref2[0],
@@ -53765,7 +53766,7 @@ var StartModal = function StartModal() {
     _ref4 = _slicedToArray(_ref3, 2),
     moneyTotal = _ref4[0],
     setMoneyTotal = _ref4[1];
-  var _ref5 = (0, react_1.useState)(true),
+  var _ref5 = (0, react_1.useState)(props.visible),
     _ref6 = _slicedToArray(_ref5, 2),
     modalVisible = _ref6[0],
     setModalVisible = _ref6[1];
@@ -53784,25 +53785,13 @@ var StartModal = function StartModal() {
     }
     setModalVisible(false);
   };
-  return react_1.default.createElement(react_1.default.Fragment, null, react_1.default.createElement(react_native_1.Button, {
-    title: "make modal visible",
-    onPress: function onPress() {
-      return setModalVisible(function (prev) {
-        return !prev;
-      });
-    }
-  }), react_1.default.createElement(react_native_1.Modal, {
+  return react_1.default.createElement(react_1.default.Fragment, null, react_1.default.createElement(react_native_1.Modal, {
     visible: modalVisible,
     animationType: "fade",
     onRequestClose: function onRequestClose() {
       return setModalVisible(false);
     }
-  }, react_1.default.createElement(react_native_1.Button, {
-    title: "make modal visible",
-    onPress: function onPress() {
-      return (0, Alert_1.default)("test alert");
-    }
-  }), react_1.default.createElement(react_native_1.View, {
+  }, react_1.default.createElement(react_native_1.View, {
     style: {
       flex: 3,
       alignItems: "center",
@@ -53812,12 +53801,11 @@ var StartModal = function StartModal() {
       flexShrink: 1,
       borderWidth: 2
     }
-  }, react_1.default.createElement(react_native_1.View, null, react_1.default.createElement(PlayerList, _objectSpread({}, {
+  }, react_1.default.createElement(react_native_1.View, null, react_1.default.createElement(exports.PlayerList, _objectSpread({}, {
     players: players,
     setPlayers: setPlayers
   })), react_1.default.createElement(react_native_1.Text, null, "Winning pot!"), react_1.default.createElement(react_native_1.TextInput, {
     onChangeText: function onChangeText(amount) {
-      console.log((0, Validation_1.isNumeric)(amount) + " " + amount);
       if (!(0, Validation_1.isNumeric)(amount)) {
         (0, Alert_1.default)("only numbers allowed");
       } else setMoneyTotal(amount);
@@ -53859,7 +53847,7 @@ var StartModal = function StartModal() {
         (0, Alert_1.default)("You must add a player name");
       }
     }
-  })))));
+  }), props.children))));
 };
 var Gap = function Gap() {
   return react_1.default.createElement(react_native_1.View, {
@@ -53869,19 +53857,22 @@ var Gap = function Gap() {
 var PlayerList = function PlayerList(_ref9) {
   var players = _ref9.players,
     setPlayers = _ref9.setPlayers;
-  return react_1.default.createElement(react_native_1.View, null, players.map(function (player, index) {
-    return react_1.default.createElement(react_native_1.View, null, react_1.default.createElement(react_native_1.Text, null, player.name, ": ", player.amountWon), react_1.default.createElement(react_native_1.Button, {
+  return react_1.default.createElement(react_native_1.View, null, players.map(function (player) {
+    return react_1.default.createElement(react_native_1.View, null, react_1.default.createElement(react_native_1.Text, null, player.name, ": ", player.amountWon, " ", player.isActive && "****"), setPlayers && react_1.default.createElement(react_native_1.Button, {
       title: "X",
       onPress: function onPress() {
         return setPlayers(function (prev) {
-          return prev.filter(function (currPlayer, pos) {
-            return index !== pos;
+          return prev.filter(function (currPlayer) {
+            return player.name !== currPlayer.name;
           });
-        });
+        } //may need to check id instead
+        );
       }
     }));
   }));
 };
+
+exports.PlayerList = PlayerList;
 var beginButtons = function beginButtons() {};
 var moneyInput = function moneyInput() {};
 var startPage = function startPage() {};
@@ -53907,10 +53898,211 @@ var styles = react_native_1.StyleSheet.create({
     width: 300
   }
 });
-exports.default = StartModal;
-},{"react":"node_modules/react/index.js","react-native":"node_modules/react-native-web/dist/index.js","../utils/Validation":"shared/utils/Validation.ts","../utils/Alert":"shared/utils/Alert.ts"}],"index.tsx":[function(require,module,exports) {
+exports.default = StartGameModal;
+},{"react":"node_modules/react/index.js","react-native":"node_modules/react-native-web/dist/index.js","../utils/Validation":"shared/utils/Validation.ts","../utils/Alert":"shared/utils/Alert.ts"}],"shared/pages/HomePage.tsx":[function(require,module,exports) {
 "use strict";
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0) { ; } } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  var desc = Object.getOwnPropertyDescriptor(m, k);
+  if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+    desc = {
+      enumerable: true,
+      get: function get() {
+        return m[k];
+      }
+    };
+  }
+  Object.defineProperty(o, k2, desc);
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+  __setModuleDefault(result, mod);
+  return result;
+};
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var react_1 = __importStar(require("react"));
+var react_native_1 = require("react-native");
+var StartGameModal_1 = require("./StartGameModal");
+var possibleWinnings = [1, 2, 5, 10, 20, 50, 100];
+var currentActivePlayerIndex = 0; // Math.floor(Math.random() * players.length); // ([nextPlayer, currentPlayer] = useTrackActivePlayer) move the tracking player functionality to a custom hook? useEffect to trakc anytime something changed (like winings?) then upate the current player?
+var HomePage = function HomePage(_ref) {
+  var players = _ref.players,
+    setPlayers = _ref.setPlayers,
+    moneyTotal = _ref.moneyTotal,
+    setShowEndGameModal = _ref.setShowEndGameModal;
+  //add functionality for a playre being active and getting a prize
+  var _ref2 = (0, react_1.useState)(false),
+    _ref3 = _slicedToArray(_ref2, 2),
+    prizeModal = _ref3[0],
+    setPrizeModal = _ref3[1];
+  var _ref4 = (0, react_1.useState)(10),
+    _ref5 = _slicedToArray(_ref4, 2),
+    currentWinnings = _ref5[0],
+    setCurrentWinnings = _ref5[1];
+  var _ref6 = (0, react_1.useState)(moneyTotal),
+    _ref7 = _slicedToArray(_ref6, 2),
+    winningPot = _ref7[0],
+    setWinningPot = _ref7[1];
+  var _ref8 = (0, react_1.useState)(false),
+    _ref9 = _slicedToArray(_ref8, 2),
+    openGift = _ref9[0],
+    setOpenGift = _ref9[1];
+  (0, react_1.useEffect)(function () {
+    if (winningPot === 0) {
+      setShowEndGameModal(true);
+    }
+  }, [winningPot]);
+  (0, react_1.useEffect)(function () {
+    setPlayers(function (prevPlayerState //set first player
+    ) {
+      return prevPlayerState.map(function (player, index) {
+        if (currentActivePlayerIndex === index) player.isActive = true;
+        return player;
+      });
+    });
+  }, []);
+  var giftRotation = new react_native_1.Animated.Value(0);
+  react_native_1.Animated.loop(
+  //turn this into an animated function?
+  react_native_1.Animated.sequence([react_native_1.Animated.timing(giftRotation, {
+    toValue: 1,
+    duration: 500,
+    useNativeDriver: false
+  }), react_native_1.Animated.timing(giftRotation, {
+    toValue: 0,
+    duration: 500,
+    useNativeDriver: false
+  }), react_native_1.Animated.delay(750)])); //.start();
+  var interpolatedRotation = giftRotation.interpolate({
+    inputRange: [0, 1],
+    outputRange: ["-30deg", "30deg"]
+  });
+  return react_1.default.createElement(react_native_1.View, {
+    style: {
+      flex: 0,
+      alignItems: "center",
+      justifyContent: "space-evenly",
+      alignContent: "center"
+    }
+  }, react_1.default.createElement(react_native_1.View, null, react_1.default.createElement(StartGameModal_1.PlayerList, {
+    players: players
+  }), react_1.default.createElement(react_native_1.Text, {
+    style: {
+      fontSize: 20,
+      borderWidth: 2
+    }
+  }, winningPot)), react_1.default.createElement(react_native_1.Modal, {
+    visible: prizeModal,
+    onRequestClose: function onRequestClose() {
+      return setPrizeModal(false);
+    }
+  }, react_1.default.createElement(react_native_1.View, null, react_1.default.createElement(react_native_1.Text, null, "You've won ", currentWinnings), react_1.default.createElement(react_native_1.Button, {
+    title: "start next player turn",
+    onPress: function onPress() {
+      setPlayers(function (prevPlayerState) {
+        console.log(currentActivePlayerIndex);
+        var activePlayer = prevPlayerState.filter(function (player) {
+          return player.isActive === true;
+        });
+        activePlayer[0].amountWon += currentWinnings;
+        activePlayer[0].isActive = false;
+        currentActivePlayerIndex = (currentActivePlayerIndex + 1) % players.length;
+        var nextPlayer = prevPlayerState.filter(function (player, index) {
+          return index === currentActivePlayerIndex;
+        });
+        nextPlayer[0].isActive = true;
+        return prevPlayerState;
+      });
+      setPrizeModal(false);
+      setOpenGift(false);
+      setWinningPot(function (prev) {
+        return prev - currentWinnings;
+      });
+    }
+  }))), openGift && react_1.default.createElement(react_native_1.Animated.View, {
+    style: {
+      transform: [{
+        rotateZ: interpolatedRotation
+      }]
+    }
+  }, react_1.default.createElement(react_native_1.TouchableOpacity, {
+    onPress: function onPress() {
+      setPrizeModal(true);
+      setCurrentWinnings(getPrizeAmount(winningPot));
+    }
+  }, react_1.default.createElement(react_native_1.Text, null, "Click here to open your gift"))), react_1.default.createElement(react_native_1.View, null, react_1.default.createElement(react_native_1.Button, {
+    title: "open gift",
+    onPress: function onPress() {
+      return setOpenGift(true);
+    }
+  })));
+};
+var getPrizeAmount = function getPrizeAmount(max) {
+  //make this algorithm better later
+  //keep max winnings less than 40% of the pot
+  // only use the enums
+  // make it more likely that lower numbers are used (have a percent?)
+  var maxOptions;
+  console.log(max);
+  var maxPossibleWinning = Math.floor(max / 3);
+  switch (true) {
+    case maxPossibleWinning >= 100:
+      maxOptions = 7;
+      break;
+    case maxPossibleWinning >= 50:
+      maxOptions = 5;
+      break;
+    case maxPossibleWinning >= 20:
+      maxOptions = 4;
+      break;
+    case maxPossibleWinning >= 10:
+      maxOptions = 3;
+      break;
+    case maxPossibleWinning >= 5:
+      maxOptions = 2;
+      break;
+    default:
+      maxOptions = 1;
+      break;
+  }
+  var pos = Math.round(Math.random() * maxOptions);
+  console.log(maxOptions, maxPossibleWinning, pos, possibleWinnings[pos]);
+  return possibleWinnings[pos];
+};
+exports.default = HomePage;
+},{"react":"node_modules/react/index.js","react-native":"node_modules/react-native-web/dist/index.js","./StartGameModal":"shared/pages/StartGameModal.tsx"}],"shared/pages/EndGameModal.tsx":[function(require,module,exports) {
+"use strict";
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -53920,14 +54112,132 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var react_1 = __importDefault(require("react"));
+var react_native_1 = require("react-native");
+var StartGameModal_1 = require("./StartGameModal");
+var EndGameModal = function EndGameModal(_ref) {
+  var visible = _ref.visible,
+    players = _ref.players,
+    showStartModal = _ref.showStartModal;
+  return react_1.default.createElement(react_native_1.Modal, _objectSpread({}, {
+    visible: visible
+  }), react_1.default.createElement(react_native_1.View, null, react_1.default.createElement(react_native_1.Text, null, "End Game Modal, Here are the final winning numbers"), react_1.default.createElement(StartGameModal_1.PlayerList, {
+    players: players
+  }), react_1.default.createElement(react_native_1.Button, {
+    title: "Exit",
+    onPress: function onPress() {
+      return console.log("you exited the game");
+    }
+  }), react_1.default.createElement(react_native_1.Button, {
+    title: "New Game",
+    onPress: function onPress() {
+      return showStartModal(true);
+    }
+  })));
+};
+exports.default = EndGameModal;
+},{"react":"node_modules/react/index.js","react-native":"node_modules/react-native-web/dist/index.js","./StartGameModal":"shared/pages/StartGameModal.tsx"}],"index.tsx":[function(require,module,exports) {
+"use strict";
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0) { ; } } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  var desc = Object.getOwnPropertyDescriptor(m, k);
+  if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+    desc = {
+      enumerable: true,
+      get: function get() {
+        return m[k];
+      }
+    };
+  }
+  Object.defineProperty(o, k2, desc);
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+  __setModuleDefault(result, mod);
+  return result;
+};
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var react_1 = __importStar(require("react"));
 var client_1 = __importDefault(require("react-dom/client"));
-var StartModal_1 = __importDefault(require("./shared/pages/StartModal"));
+var StartGameModal_1 = __importDefault(require("./shared/pages/StartGameModal"));
+var HomePage_1 = __importDefault(require("./shared/pages/HomePage"));
+var EndGameModal_1 = __importDefault(require("./shared/pages/EndGameModal"));
 var App = function App() {
-  return react_1.default.createElement(StartModal_1.default, null);
+  //rename this as "Game"? Make a parent class that controls the flow over the modals and overall game then the smaller modals can control their speicfic funcitonality
+  var _ref = (0, react_1.useState)(false),
+    _ref2 = _slicedToArray(_ref, 2),
+    showEndGameModal = _ref2[0],
+    setShowEndGameModal = _ref2[1];
+  var _ref3 = (0, react_1.useState)(true),
+    _ref4 = _slicedToArray(_ref3, 2),
+    showStartGameModal = _ref4[0],
+    setShowStartGameModal = _ref4[1];
+  var _ref5 = (0, react_1.useState)([{
+      name: "fred1",
+      amountWon: 0
+    }, {
+      name: "fred2",
+      amountWon: 0
+    }, {
+      name: "fred3",
+      amountWon: 0
+    }
+    // { name: "fred4", amountWon: 0 },
+    // { name: "fred5", amountWon: 0 },
+    ]),
+    _ref6 = _slicedToArray(_ref5, 2),
+    players = _ref6[0],
+    setPlayers = _ref6[1];
+  return react_1.default.createElement(react_1.default.Fragment, null, react_1.default.createElement(HomePage_1.default, _objectSpread({}, {
+    players: players,
+    setPlayers: setPlayers,
+    moneyTotal: 5,
+    setShowEndGameModal: setShowEndGameModal
+  })), react_1.default.createElement(StartGameModal_1.default, {
+    visible: showStartGameModal
+  }), react_1.default.createElement(EndGameModal_1.default, {
+    visible: showEndGameModal,
+    players: players,
+    showStartModal: setShowStartGameModal
+  }));
 };
 var root = client_1.default.createRoot(document.getElementById("root"));
 root.render(react_1.default.createElement(App, null));
-},{"react":"node_modules/react/index.js","react-dom/client":"node_modules/react-dom/client.js","./shared/pages/StartModal":"shared/pages/StartModal.tsx"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom/client":"node_modules/react-dom/client.js","./shared/pages/StartGameModal":"shared/pages/StartGameModal.tsx","./shared/pages/HomePage":"shared/pages/HomePage.tsx","./shared/pages/EndGameModal":"shared/pages/EndGameModal.tsx"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -53952,7 +54262,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58731" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50405" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
