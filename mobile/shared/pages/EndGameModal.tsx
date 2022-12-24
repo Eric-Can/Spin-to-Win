@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Modal, Button } from "react-native";
-import { Player, PlayerList } from "./StartGameModal";
+import { Player, PlayerList } from "../components/Player";
 
 type props = {
 	visible: boolean;
+	setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 	players: Player[];
 	showStartModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const EndGameModal = ({ visible, players, showStartModal }: props) => {
+const EndGameModal = ({
+	visible,
+	players,
+	showStartModal,
+	setVisible,
+}: props) => {
 	return (
 		<Modal {...{ visible }}>
 			<View>
@@ -18,7 +24,13 @@ const EndGameModal = ({ visible, players, showStartModal }: props) => {
 					title="Exit"
 					onPress={() => console.log("you exited the game")}
 				/>
-				<Button title="New Game" onPress={() => showStartModal(true)} />
+				<Button
+					title="New Game"
+					onPress={() => {
+						setVisible(false);
+						showStartModal(true);
+					}}
+				/>
 			</View>
 		</Modal>
 	);

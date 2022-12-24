@@ -8,7 +8,7 @@ import {
 	Animated,
 	Modal,
 } from "react-native";
-import { Player, PlayerList } from "./StartGameModal";
+import { PlayerList, Player } from "../components/Player";
 
 const possibleWinnings = [1, 2, 5, 10, 20, 50, 100];
 let currentActivePlayerIndex = 0; // Math.floor(Math.random() * players.length); // ([nextPlayer, currentPlayer] = useTrackActivePlayer) move the tracking player functionality to a custom hook? useEffect to trakc anytime something changed (like winings?) then upate the current player?
@@ -33,7 +33,9 @@ const HomePage = ({
 	const [openGift, setOpenGift] = useState(false);
 
 	useEffect(() => {
+		console.log("winning is ", winningPot);
 		if (winningPot === 0) {
+			console.log("set endgame state");
 			setShowEndGameModal(true);
 		}
 	}, [winningPot]);
@@ -169,7 +171,7 @@ const getPrizeAmount = (max: number) => {
 			break;
 	}
 
-	const pos = Math.round(Math.random() * maxOptions);
+	const pos = Math.floor(Math.random() * maxOptions);
 	console.log(maxOptions, maxPossibleWinning, pos, possibleWinnings[pos]);
 
 	return possibleWinnings[pos];

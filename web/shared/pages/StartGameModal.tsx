@@ -2,19 +2,21 @@ import React, { FC, ReactNode, useState } from "react";
 import { View, Text, Button, TextInput, Modal, StyleSheet } from "react-native";
 import { isNumeric } from "../utils/Validation";
 import alert from "../utils/Alert";
+import { Player, PlayerList } from "../components/Player";
 
-export type Player = {
-	name: string;
-	amountWon: number;
-	isActive?: boolean;
+type props = {
+	setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+	children?: ReactNode;
+	visible: boolean;
 };
 
-const StartGameModal: FC<{ children?: ReactNode; visible: boolean }> = (
-	props
-) => {
-	const [players, setPlayers] = useState<Player[]>([]);
-	const [moneyTotal, setMoneyTotal] = useState("");
-	const [modalVisible, setModalVisible] = useState(props.visible);
+const StartGameModal = ({ setVisible, children, visible }: props) => {
+	const [players, setPlayers] = useState<Player[]>([
+		{ name: "fred1", amountWon: 0 },
+		{ name: "fred2", amountWon: 0 },
+		{ name: "fred3", amountWon: 0 },
+	]);
+	const [maxWinnings, setMaxWinnings] = useState("");
 	const [playerName, setPlayerName] = useState("");
 
 	const startGameOnPress = () => {
@@ -22,47 +24,49 @@ const StartGameModal: FC<{ children?: ReactNode; visible: boolean }> = (
 			alert("You cannot start a game with less than 2 players!");
 			return;
 		}
-		if (parseInt(moneyTotal) < 1) {
+		if (parseInt(maxWinnings) < 1) {
 			alert("You cannot start a game with less than 1 dollar to be won!");
 			return;
 		}
-
-		setModalVisible(false);
+		setVisible(false);
 	};
 
 	return (
 		<>
-			<Modal
-				visible={modalVisible} //modalVisible
-				animationType="fade"
-				onRequestClose={() => setModalVisible(false)}
+			<View
+				style={{
+					// alignItems: "center",
+					justifyContent: "space-evenly",
+					alignSelf: "center",
+					flexDirection: "column",
+					// alignContent: "stretch",
+					borderColor: "black",
+					// flexShrink: 1,
+					borderWidth: 2,
+				}}
 			>
-				<View
-					style={{
-						flex: 3,
-						alignItems: "center",
-						justifyContent: "space-evenly",
-						alignContent: "center",
-						borderColor: "black",
-						flexShrink: 1,
-						borderWidth: 2,
-					}}
+				<Modal
+					visible={visible}
+					animationType="fade"
+					onRequestClose={() => setVisible(false)}
+					// transparent
+					style={{ borderWidth: 1, borderColor: "black" }}
 				>
-					<View>
-						<PlayerList {...{ players, setPlayers }} />
-						<Text>Winning pot!</Text>
-						<TextInput
-							onChangeText={(amount) => {
-								if (!isNumeric(amount)) {
-									alert("only numbers allowed");
-								} else setMoneyTotal(amount);
-							}}
-							value={moneyTotal}
-							placeholder="input an amount of money to win!"
-							keyboardType="numeric"
-							style={{ borderColor: "black", borderWidth: 1 }}
-						/>
-					</View>
+					{/* <View> */}
+					<PlayerList {...{ players, setPlayers }} />
+					<Text>Winning pot!</Text>
+					<TextInput
+						onChangeText={(amount) => {
+							if (!isNumeric(amount)) {
+								alert("only numbers allowed");
+							} else setMaxWinnings(amount);
+						}}
+						value={maxWinnings}
+						placeholder="input an amount of money to win!"
+						keyboardType="numeric"
+						style={{ borderColor: "black", borderWidth: 1 }}
+					/>
+					{/* </View> */}
 					<View style={styles.buttons}>
 						<Button title={"Start Game button"} onPress={startGameOnPress} />
 						<Gap />
@@ -86,10 +90,10 @@ const StartGameModal: FC<{ children?: ReactNode; visible: boolean }> = (
 								}
 							}}
 						/>
-						{props.children}
+						{children}
 					</View>
-				</View>
-			</Modal>
+				</Modal>
+			</View>
 		</>
 	);
 };
@@ -98,36 +102,6 @@ const Gap = () => {
 	return <View style={styles.gap} />;
 };
 
-export const PlayerList = ({
-	players,
-	setPlayers,
-}: {
-	players: Player[];
-	setPlayers?: React.Dispatch<React.SetStateAction<Player[]>>;
-}) => {
-	return (
-		<View>
-			{players.map((player: Player) => (
-				<View>
-					<Text>
-						{player.name}: {player.amountWon} {player.isActive && "****"}
-					</Text>
-					{setPlayers && (
-						<Button
-							title="X"
-							onPress={() =>
-								setPlayers(
-									(prev) =>
-										prev.filter((currPlayer) => player.name !== currPlayer.name) //may need to check id instead
-								)
-							}
-						/>
-					)}
-				</View>
-			))}
-		</View>
-	);
-};
 const beginButtons = () => {};
 const moneyInput = () => {};
 const startPage = () => {};
