@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Animated, Modal } from 'react-native';
 import { PlayerList, Player } from '../components/Player';
-import { Button, Avatar, List, Text, Appbar } from 'react-native-paper';
+import {
+  Button,
+  Avatar,
+  List,
+  Text,
+  Appbar,
+  Divider,
+} from 'react-native-paper';
 
 const possibleWinnings = [1, 2, 5, 10, 20, 50, 100];
 let currentActivePlayerIndex = 0; // Math.floor(Math.random() * players.length); // ([nextPlayer, currentPlayer] = useTrackActivePlayer) move the tracking player functionality to a custom hook? useEffect to trakc anytime something changed (like winings?) then upate the current player?
@@ -33,21 +40,8 @@ const HomePage = ({
     }
   }, [winningPot, setShowEndGameModal]);
 
-  useEffect(() => {
-    setPlayers(
-      (
-        prevPlayerState, //set first player
-      ) =>
-        prevPlayerState.map((player, index) => {
-          if (currentActivePlayerIndex === index) player.isActive = true;
-          return player;
-        }),
-    );
-  }, [setPlayers]);
-
-  let giftRotation = new Animated.Value(0);
+  let giftRotation = new Animated.Value(0.5);
   Animated.loop(
-    //turn this into an animated function?
     Animated.sequence([
       Animated.timing(giftRotation, {
         toValue: 1,
@@ -59,9 +53,14 @@ const HomePage = ({
         duration: 500,
         useNativeDriver: false,
       }),
+      Animated.timing(giftRotation, {
+        toValue: 0.5,
+        duration: 500,
+        useNativeDriver: false,
+      }),
       Animated.delay(750),
     ]),
-  ); //.start();
+  ).start();
 
   const interpolatedRotation = giftRotation.interpolate({
     inputRange: [0, 1],
@@ -72,24 +71,29 @@ const HomePage = ({
     <>
       <View
         style={{
-          // justifyContent: 'center',
           alignContent: 'center',
           justifyContent: 'space-evenly',
-          // alignSelf: 'center',
-          padding: 50,
-          flex: 2,
+          paddingHorizontal: 20,
+          paddingBottom: 20,
+          flex: 1,
         }}>
-        <Appbar.Content title={`Remaining Pot: ${winningPot}`} />
+        <Appbar.Header dark mode="small">
+          <Divider />
+          <Appbar.Content
+            titleStyle={{ textAlign: 'center' }}
+            title={`Remaining Pot: ${winningPot}`}
+          />
+        </Appbar.Header>
         <PlayerList players={players} />
-        <View>
-          <Button mode="contained-tonal" onPress={() => setOpenGift(true)}>
-            Open Gift
-          </Button>
-        </View>
-        {prizeModal && (
-          <>
-            <Text>You've won {currentWinnings}</Text>
-            {/* add easing animation for hte prize?*/}
+        {prizeModal ? (
+          <View
+            style={{
+              flex: 1,
+              alignItems: 'center',
+            }}>
+            <Text variant="titleLarge" style={{ padding: 20 }}>
+              You've won ${currentWinnings}!
+            </Text>
             <Button
               onPress={() => {
                 setPlayers(prevPlayerState => {
@@ -112,31 +116,44 @@ const HomePage = ({
                 setPrizeModal(false);
                 setOpenGift(false);
                 setWinningPot(prev => prev - currentWinnings);
-              }}>
+              }}
+              mode="contained-tonal">
               Start Next Player Turn
             </Button>
-          </>
-        )}
-        <View style={{ paddingVertical: 100 }}>
-          {openGift && (
-            <Animated.View
-              style={{ transform: [{ rotateZ: interpolatedRotation }] }}>
-              <TouchableOpacity
-                onPress={() => {
-                  setPrizeModal(true);
-                  setCurrentWinnings(getPrizeAmount(winningPot));
-                  setOpenGift(false);
+          </View>
+        ) : (
+          <View
+            style={{
+              flex: 1,
+              alignItems: 'center',
+            }}>
+            {openGift ? (
+              <Animated.View
+                style={{
+                  alignContent: 'center',
+                  transform: [{ rotateZ: interpolatedRotation }],
                 }}>
-                <List.Image
-                  variant="image"
-                  source={{
-                    uri: 'https://cdn5.vectorstock.com/i/1000x1000/24/79/christmas-gift-icon-in-flat-style-vector-11872479.jpg',
-                  }}
-                />
-              </TouchableOpacity>
-            </Animated.View>
-          )}
-        </View>
+                <TouchableOpacity
+                  onPress={() => {
+                    setPrizeModal(true);
+                    setCurrentWinnings(getPrizeAmount(winningPot));
+                    setOpenGift(false);
+                  }}>
+                  <Avatar.Image
+                    size={300}
+                    source={{
+                      uri: 'https://www.psdgraphics.com/file/christmas-gift-icon.jpg',
+                    }}
+                  />
+                </TouchableOpacity>
+              </Animated.View>
+            ) : (
+              <Button mode="contained-tonal" onPress={() => setOpenGift(true)}>
+                Open Gift
+              </Button>
+            )}
+          </View>
+        )}
       </View>
     </>
   );

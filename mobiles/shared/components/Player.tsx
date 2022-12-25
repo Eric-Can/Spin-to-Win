@@ -28,11 +28,10 @@ export const PlayerList = ({ players, setPlayers }: PlayerListProps) => {
         <List.Subheader>Players</List.Subheader>
         <ScrollView>
           {players.map((player: Player, index: number) => (
-            <>
+            <View key={player.name + index}>
               <List.Item
                 title={player.name}
-                key={index}
-                description={player.amountWon + ''}
+                description={'$' + player.amountWon}
                 left={() => {
                   return player.isActive ? (
                     <List.Image
@@ -50,7 +49,7 @@ export const PlayerList = ({ players, setPlayers }: PlayerListProps) => {
                 }
               />
               <Divider />
-            </>
+            </View>
           ))}
         </ScrollView>
       </List.Section>

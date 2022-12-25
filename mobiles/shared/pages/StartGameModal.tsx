@@ -1,22 +1,25 @@
 import React, { ReactNode, useState } from 'react';
 import { View, Modal, StyleSheet } from 'react-native';
-import { TextInput, Button, Text } from 'react-native-paper';
+import { TextInput, Button, Text, Appbar } from 'react-native-paper';
 import { isNumeric } from '../utils/Validation';
 import alert from '../utils/Alert';
 import { Player, PlayerList } from '../components/Player';
 
 type props = {
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  children?: ReactNode;
   visible: boolean;
+  players: Player[];
+  setPlayers: React.Dispatch<React.SetStateAction<Player[]>>;
+  setMoneyTotal: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const StartGameModal = ({ setVisible, children, visible }: props) => {
-  const [players, setPlayers] = useState<Player[]>([
-    { name: 'fred1', amountWon: 0, isActive: true },
-    { name: 'fred2', amountWon: 0 },
-    { name: 'fred3', amountWon: 0 },
-  ]);
+const StartGameModal = ({
+  setVisible,
+  visible,
+  players,
+  setPlayers,
+  setMoneyTotal,
+}: props) => {
   const [maxWinnings, setMaxWinnings] = useState('');
   const [playerName, setPlayerName] = useState('');
 
@@ -43,7 +46,20 @@ const StartGameModal = ({ setVisible, children, visible }: props) => {
       return;
     }
 
+    setMoneyTotal(parseInt(maxWinnings, 10));
+    setPlayers(
+      (
+        prev, //Set first player turn
+      ) => {
+        const randomPlayerIndex = Math.floor(Math.random() * players.length);
+        return prev.map((player, index) => {
+          if (index === randomPlayerIndex) player.isActive = true;
+          return player;
+        });
+      },
+    );
     setVisible(false);
+    setMaxWinnings('');
   };
 
   return (
@@ -52,6 +68,12 @@ const StartGameModal = ({ setVisible, children, visible }: props) => {
         visible={visible}
         animationType="fade"
         onRequestClose={() => setVisible(false)}>
+        <Appbar.Header dark mode="small">
+          <Appbar.Content
+            title="Christmas Sweep Stakes!"
+            titleStyle={{ textAlign: 'center' }}
+          />
+        </Appbar.Header>
         <View
           style={{
             paddingVertical: 40,
