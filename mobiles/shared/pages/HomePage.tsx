@@ -10,6 +10,13 @@ import {
   Divider,
 } from 'react-native-paper';
 
+const presentURIs = [
+  'https://www.psdgraphics.com/file/christmas-gift-icon.jpg',
+  'https://sketchok.com/images/articles/08-other/07-different-topics/christmas/04/18.jpg',
+  'https://pixy.org/src/92/thumbs350/920906.jpg',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdZTZ0f8yQ1c-COzq5ra4DO2wmrEmriae2AM8ShTrriZ5MXmpbkOftPVqoIk3EympB-e0&usqp=CAU',
+];
+
 const possibleWinnings = [1, 2, 5, 10, 20, 50, 100];
 let currentActivePlayerIndex = 0; // Math.floor(Math.random() * players.length); // ([nextPlayer, currentPlayer] = useTrackActivePlayer) move the tracking player functionality to a custom hook? useEffect to trakc anytime something changed (like winings?) then upate the current player?
 
@@ -132,25 +139,35 @@ const HomePage = ({
               alignItems: 'center',
             }}>
             {openGift ? (
-              <Animated.View
+              <View
                 style={{
-                  alignContent: 'center',
-                  transform: [{ rotateZ: interpolatedRotation }],
+                  alignContent: 'flex-start',
+                  justifyContent: 'space-evenly',
+                  flexWrap: 'wrap',
                 }}>
-                <TouchableOpacity
-                  onPress={() => {
-                    setPrizeModal(true);
-                    setCurrentWinnings(getPrizeAmount(winningPot));
-                    setOpenGift(false);
-                  }}>
-                  <Avatar.Image
-                    size={300}
-                    source={{
-                      uri: 'https://www.psdgraphics.com/file/christmas-gift-icon.jpg',
-                    }}
-                  />
-                </TouchableOpacity>
-              </Animated.View>
+                {presentURIs.map(uri => {
+                  return (
+                    <Animated.View
+                      style={{
+                        transform: [{ rotateZ: interpolatedRotation }],
+                      }}>
+                      <TouchableOpacity
+                        onPress={() => {
+                          setPrizeModal(true);
+                          setCurrentWinnings(getPrizeAmount(winningPot));
+                          setOpenGift(false);
+                        }}>
+                        <Avatar.Image
+                          size={100}
+                          source={{
+                            uri,
+                          }}
+                        />
+                      </TouchableOpacity>
+                    </Animated.View>
+                  );
+                })}
+              </View>
             ) : (
               <Button mode="contained-tonal" onPress={() => setOpenGift(true)}>
                 Open Gift

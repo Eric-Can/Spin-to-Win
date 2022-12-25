@@ -12,7 +12,7 @@ type props = {
 const EndGameModal = ({ visible, players, resetState }: props) => {
   return (
     <>
-      <Modal {...{ visible }}>
+      <Modal visible={visible} style={{ width: '100%', borderWidth: 1 }}>
         <Appbar.Header dark mode="small">
           <Appbar.Content
             title="Christmas Sweep Stakes!"
@@ -22,14 +22,9 @@ const EndGameModal = ({ visible, players, resetState }: props) => {
         <View
           style={{
             paddingVertical: 40,
-            paddingHorizontal: 15,
-            flex: 1,
             maxHeight: '60%',
-            flexBasis: 4,
-            flexShrink: 2,
-            alignSelf: 'center',
-            alignContent: 'center',
-            justifyContent: 'center',
+            flex: 1,
+            paddingHorizontal: 15,
           }}>
           <Text variant="titleLarge">The Game is Over!</Text>
           <Text>Here are the final results</Text>

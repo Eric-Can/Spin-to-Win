@@ -25,7 +25,7 @@ const theme = {
     onErrorContainer: 'rgb(65, 0, 2)',
     background: 'rgb(252, 253, 246)',
     onBackground: 'rgb(26, 28, 25)',
-    surface: '#34A65F',
+    surface: 'rgb(1, 110, 33)',
     onSurface: 'rgb(26, 28, 25)',
     surfaceVariant: 'rgb(222, 229, 217)',
     onSurfaceVariant: 'rgb(66, 73, 64)',
@@ -54,8 +54,12 @@ const App = () => {
   //rename this as "Game"? Make a parent class that controls the flow over the modals and overall game then the smaller modals can control their speicfic funcitonality
   const [showEndGameModal, setShowEndGameModal] = useState(false);
   const [showStartGameModal, setShowStartGameModal] = useState(true);
-  const [players, setPlayers] = useState<Player[]>([]);
-  const [moneyTotal, setMoneyTotal] = useState(0);
+  const [players, setPlayers] = useState<Player[]>([
+    { name: 'fred', isActive: true, amountWon: 10 },
+    { name: 'fred', amountWon: 10 },
+    { name: 'fred', amountWon: 100 },
+  ]);
+  const [moneyTotal, setMoneyTotal] = useState(10);
 
   const resetState = () => {
     setShowStartGameModal(true);
@@ -66,23 +70,23 @@ const App = () => {
 
   return (
     <PaperProvider theme={theme}>
-      <StartGameModal
+      {/* <StartGameModal
         visible={showStartGameModal}
         setVisible={state => setShowStartGameModal(state)}
         players={players}
         setPlayers={setPlayers}
         setMoneyTotal={setMoneyTotal}
-      />
+      /> */}
       {moneyTotal > 0 && (
         <HomePage
           {...{ players, setPlayers, moneyTotal, setShowEndGameModal }}
         />
       )}
-      <EndGameModal
+      {/* <EndGameModal
         visible={showEndGameModal}
         resetState={resetState} //change these to (state) => setState(state) and find out why this is better (also change the types)
         players={players}
-      />
+      /> */}
     </PaperProvider>
   );
 };

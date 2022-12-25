@@ -24,7 +24,7 @@ export const PlayerList = ({ players, setPlayers }: PlayerListProps) => {
 
   return (
     <View style={styles.container}>
-      <List.Section style={styles.container}>
+      <List.Section>
         <List.Subheader>Players</List.Subheader>
         <ScrollView>
           {players.map((player: Player, index: number) => (
@@ -32,6 +32,7 @@ export const PlayerList = ({ players, setPlayers }: PlayerListProps) => {
               <List.Item
                 title={player.name}
                 titleStyle={{ fontSize: 24 }}
+                style={{ alignItems: 'stretch', flexWrap: 'wrap' }}
                 left={() => {
                   return player.isActive ? (
                     <List.Image
@@ -84,7 +85,8 @@ export const PlayerList = ({ players, setPlayers }: PlayerListProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // flexBasis: 1,
+    flexBasis: 1,
+    flexGrow: 2,
     // innerWidth: '80%',
     // borderWidth: 1,
     // borderColor: 'white',
