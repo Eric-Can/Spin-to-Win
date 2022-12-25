@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { List, Button, Divider } from 'react-native-paper';
+import { List, Button, Divider, Badge } from 'react-native-paper';
 
 export type Player = {
   name: string;
@@ -31,21 +31,45 @@ export const PlayerList = ({ players, setPlayers }: PlayerListProps) => {
             <View key={player.name + index}>
               <List.Item
                 title={player.name}
-                description={'$' + player.amountWon}
+                titleStyle={{ fontSize: 24 }}
                 left={() => {
                   return player.isActive ? (
+                    <List.Image
+                      source={{
+                        uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYuplFhYEsk5EFEuLdWfqnxaejAEL9mbGKfKm-MFZAukRbQGId7Jd-T3i9v4trLdK0GEg&usqp=CAU',
+                      }}
+                      style={{ resizeMode: 'center', width: 5, height: 5 }}
+                    />
+                  ) : (
                     <List.Image
                       source={{
                         uri: 'https://cdn-icons-png.flaticon.com/512/1324/1324728.png',
                       }}
                       style={{ resizeMode: 'center', width: 5, height: 5 }}
                     />
-                  ) : undefined;
+                  );
                 }}
                 right={() =>
                   onRemovePlayer ? (
-                    <Button onPress={onRemovePlayer(player)}>X</Button>
-                  ) : undefined
+                    <Badge
+                      onPress={onRemovePlayer(player)}
+                      size={40}
+                      style={{
+                        alignSelf: 'center',
+                        backgroundColor: 'rgb(1, 110, 33)',
+                      }}>
+                      X
+                    </Badge>
+                  ) : (
+                    <Badge
+                      size={50}
+                      style={{
+                        alignSelf: 'center',
+                        backgroundColor: 'rgb(1, 110, 33)',
+                      }}>
+                      ${player.amountWon}
+                    </Badge>
+                  )
                 }
               />
               <Divider />

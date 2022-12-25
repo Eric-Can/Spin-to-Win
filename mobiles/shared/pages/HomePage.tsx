@@ -42,7 +42,7 @@ const HomePage = ({
     currentActivePlayerIndex = players.findIndex(
       player => player.isActive === true,
     );
-  }, [winningPot, setShowEndGameModal]);
+  }, [players, winningPot, setShowEndGameModal]);
 
   let giftRotation = new Animated.Value(0.5);
   Animated.loop(
@@ -73,6 +73,13 @@ const HomePage = ({
 
   return (
     <>
+      <Appbar.Header dark mode="small">
+        <Divider />
+        <Appbar.Content
+          titleStyle={{ textAlign: 'center' }}
+          title={`Remaining Pot: ${winningPot}`}
+        />
+      </Appbar.Header>
       <View
         style={{
           alignContent: 'center',
@@ -81,13 +88,6 @@ const HomePage = ({
           paddingBottom: 20,
           flex: 1,
         }}>
-        <Appbar.Header dark mode="small">
-          <Divider />
-          <Appbar.Content
-            titleStyle={{ textAlign: 'center' }}
-            title={`Remaining Pot: ${winningPot}`}
-          />
-        </Appbar.Header>
         <PlayerList players={players} />
         {prizeModal ? (
           <View
