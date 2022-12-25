@@ -95,9 +95,7 @@ const StartGameModal = ({
             value={playerName}
             mode="outlined"
             label="New Player"
-          />
-          <Button
-            onPress={() => {
+            onSubmitEditing={() => {
               if (playerName) {
                 setPlayers(prev => [
                   ...prev,
@@ -107,9 +105,9 @@ const StartGameModal = ({
               } else {
                 alert('You must add a player name');
               }
-            }}>
-            Add new Player
-          </Button>
+            }}
+          />
+          <Gap />
           <Gap />
           <Button
             mode="contained"

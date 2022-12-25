@@ -38,6 +38,10 @@ const HomePage = ({
       console.log('set endgame state');
       setShowEndGameModal(true);
     }
+
+    currentActivePlayerIndex = players.findIndex(
+      player => player.isActive === true,
+    );
   }, [winningPot, setShowEndGameModal]);
 
   let giftRotation = new Animated.Value(0.5);
