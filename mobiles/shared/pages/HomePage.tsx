@@ -153,8 +153,9 @@ const HomePage = ({
                       }}>
                       <TouchableOpacity
                         onPress={() => {
+                          const prize = getPrizeAmount(winningPot);
                           setPrizeModal(true);
-                          setCurrentWinnings(getPrizeAmount(winningPot));
+                          setCurrentWinnings(prize);
                           setOpenGift(false);
                         }}>
                         <Avatar.Image
@@ -180,14 +181,13 @@ const HomePage = ({
   );
 };
 
-const getPrizeAmount = (max: number) => {
+export const getPrizeAmount = (max: number) => {
   //make this algorithm better later
   //keep max winnings less than 40% of the pot
   // only use the enums
   // make it more likely that lower numbers are used (have a percent?)
   let maxOptions;
-  console.log(max);
-  const maxPossibleWinning = Math.floor(max / 3);
+  const maxPossibleWinning = Math.floor(max / 2.5);
 
   switch (true) {
     case maxPossibleWinning >= 100:
@@ -210,8 +210,26 @@ const getPrizeAmount = (max: number) => {
       break;
   }
 
+  // switch (true) {
+  //   case weightedSum > 108 && weightedSum <= 109:
+  //     return possibleWinnings[6];
+  //   case weightedSum > 105 && weightedSum <= 108:
+  //     return possibleWinnings[5];
+  //   case weightedSum > 100 && weightedSum <= 105:
+  //     return possibleWinnings[4];
+  //   case weightedSum > 90 && weightedSum <= 100:
+  //     return possibleWinnings[3];
+  //   case weightedSum > 75 && weightedSum <= 90:
+  //     return possibleWinnings[2];
+  //   case weightedSum > 50 && weightedSum <= 75:
+  //     return possibleWinnings[1];
+  //   case weightedSum <= 50:
+  //     return possibleWinnings[0];
+  //   default:
+  //     return possibleWinnings[0];
+  // }
+
   const pos = Math.floor(Math.random() * maxOptions);
-  console.log(maxOptions, maxPossibleWinning, pos, possibleWinnings[pos]);
 
   return possibleWinnings[pos];
 };

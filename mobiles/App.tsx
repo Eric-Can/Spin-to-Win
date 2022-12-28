@@ -70,23 +70,23 @@ const App = () => {
 
   return (
     <PaperProvider theme={theme}>
-      {/* <StartGameModal
+      <StartGameModal
         visible={showStartGameModal}
         setVisible={state => setShowStartGameModal(state)}
         players={players}
         setPlayers={setPlayers}
         setMoneyTotal={setMoneyTotal}
-      /> */}
+      />
       {moneyTotal > 0 && (
         <HomePage
           {...{ players, setPlayers, moneyTotal, setShowEndGameModal }}
         />
       )}
-      {/* <EndGameModal
+      <EndGameModal
         visible={showEndGameModal}
         resetState={resetState} //change these to (state) => setState(state) and find out why this is better (also change the types)
         players={players}
-      /> */}
+      />
     </PaperProvider>
   );
 };
